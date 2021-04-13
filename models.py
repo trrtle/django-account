@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 
 class Profile(models.Model):
@@ -10,6 +11,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"Profile for user{self.user.username}"
+
+    def get_absolute_url(self):
+        return reverse("user_detail", args=[self.user.username])
 
 
 class Contact(models.Model):
